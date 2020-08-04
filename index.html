@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notify-area" class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="fourdigit" class="form-control" type="text">
+                    <button id="generate" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="result" class="form-control" type="text">
+                    <div  class="numbers">
+                        <div  class="calc-body">
+                            <div  class="calc-button-row">
+                              <div onclick="handleclick(7)" class="button">7</div>
+                              <div onclick="handleclick(8)" class="button">8</div>
+                              <div onclick="handleclick(9)" class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="handleclick(4)" class="button">4</div>
+                              <div onclick="handleclick(5)" class="button">5</div>
+                              <div onclick="handleclick(6)" class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="handleclick(1)" class="button">1</div>
+                              <div onclick="handleclick(2)" class="button">2</div>
+                              <div onclick="handleclick(3)" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div onclick="back()"  id="delete-item"  class="button"><</div>
+                                <div onclick="handleclick(0)" class="button">0</div>
+                                <div onclick="clr()" class="button">C</div>
+                            </div>
+                            <div>
+                                <button id="submittest"  type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="notify-section">
+            <p id="dontMatch" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="Match" id="doMatch" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+<script>
+  
+  const notifyArea = document.getElementById("notify-area");
+  notifyArea.addEventListener("mouseover",function(){
+      const dontMatch = document.getElementById("dontMatch");
+      dontMatch.style.display = "none";
+      const Match = document.getElementById("Match");
+      Match.style.display = "none";
+
+  });
+  const generateBtn = document.getElementById("generate");
+  generateBtn.addEventListener("click",function(){
+
+    //const fourdigitsrandom = document.getElementById("fourdigit");
+   
+   var fourdigitsrandom = Math.floor(1000 + Math.random() * 9000);
+   document.getElementById("fourdigit").value =fourdigitsrandom;
+  });
+  
+       function handleclick(x){
+           if(x==7){
+               const num7 = x;
+               document.getElementById("result").value = document.getElementById("result").value + '7';
+           }
+          else if(x==8){
+            const num8 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '8';
+
+          }
+          else if(x==9){
+            const num9 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '9';
+          }
+          else if(x==4){
+            const num4 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '4';
+          }
+          else if(x==5){
+            const num5 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '5';
+          }
+          else if(x==6){
+            const num6 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '6';
+          }
+          else if(x==1){
+            const num1 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '1';
+          }
+          else if(x==2){
+            const num2 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '2';
+          }
+          else if(x==3){
+            const num3 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '3';
+          }
+          
+          else if(x==0){
+            const num0 = x;
+               document.getElementById("result").value =document.getElementById("result").value + '0';
+          }
+         
+       };
+
+  function clr() {  
+    document.getElementById("result").value = "0";  
+    document.getElementById("result").value = "";  
+            return;  
+        };
+
+  //var submitResult = document.getElementById("result").value;  
+  //var fourdigit =document.getElementById("fourdigit").value;
+  const submit = document.getElementById("submittest");
+  submit.addEventListener("click" ,function(){
+    var submitResult = document.getElementById("result").value;  
+    var fourdigit =document.getElementById("fourdigit").value;
+
+    if(submitResult==fourdigit){
+        
+        const Match = document.getElementById("Match");
+        Match.style.display = "block";
+    }
+
+    else{
+      const dontMatch = document.getElementById("dontMatch");
+      dontMatch.style.display = "block";
+     
+    }
+           
+})
+
+  
+  
+</script>
+  
+    
+</body>
+</html>
